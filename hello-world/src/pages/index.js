@@ -1,16 +1,58 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import { css } from "@emotion/react"
+import { rhythm } from "../utils/typography"
 import Header from "../components/header"
+import Layout from "../components/layout"
 
-export default function Home() {
+export default function Home({ data }) {
   return (
-    <div style={{ color: `purple` }}>
-      <Link to="/blogs/">Blog</Link>
-      &nbsp;&nbsp;&nbsp;
-      <Link to="/contact/">Contact</Link>
-      <Header headerText="Home" />
-      <p>Moon's blog</p>
-      <img src="https://source.unsplash.com/random/400x200" alt="" />
-    </div>
+    <Layout>
+      <div style={{ color: `purple` }}>
+        <Header headerText="Morning!" />
+        <p>Yeah, just Moon's ranting</p>
+        <img src="https://source.unsplash.com/random/800x600" alt="random picture" />
+
+        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+        {data.allMarkdownRemark.edges.map(({ node }) => (
+          <div key={node.id}>
+            <h3
+              css={css`
+                margin-bottom: ${rhythm(1 / 4)};
+              `}
+            >
+              {node.frontmatter.title}{" "}
+              <span
+                css={css`
+                  color: #bbb;
+                `}
+              >
+                — {node.frontmatter.date}
+              </span>
+            </h3>
+            <p>{node.excerpt}</p>
+          </div>
+        ))}
+      </div>
+    </Layout>
   )
 }
+
+
+export const query = graphql`
+  query {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`
