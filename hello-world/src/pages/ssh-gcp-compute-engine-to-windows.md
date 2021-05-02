@@ -3,7 +3,7 @@ title: "SSH GCP Compute Enginee on Windows"
 date: "2017-03-03"
 ---
 
-How to ssh GCP compute engine on Windows via PoweShell?
+How to ssh GCP compute engine via PoweShell?
 
 Here's a how-to video.
 
