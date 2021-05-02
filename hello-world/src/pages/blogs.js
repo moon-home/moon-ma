@@ -1,6 +1,7 @@
 import React from "react"
 import * as styles from "./blogs.module.css"
 import Container from "../components/container"
+import { Link } from "gatsby"
 
 console.log(styles)
 
@@ -17,6 +18,7 @@ const Blog = props => (
 export default function About() {
     return (
         <Container>
+            <Link to="/">Home</Link>
             <h1>Blog</h1>
             <p>Writing is nice</p>
             <Blog
