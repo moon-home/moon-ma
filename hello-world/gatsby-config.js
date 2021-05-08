@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Moon Ma`,
-    description: `Moon Ma's personal blog`,
+    title: `GetUpLate`,
+    description: `Blogs on how to catch up as a late starter`,
     author: `Moon Ma`,
   },
   plugins: [
